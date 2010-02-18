@@ -13,10 +13,10 @@ var jsDump;
 (function(){
 	function quote( str ){
 		return '"' + str.toString().replace(/"/g, '\\"') + '"';
-	};
+	}
 	function literal( o ){
 		return o + '';
-	};
+	}
 	function join( pre, arr, post ){
 		var s = jsDump.separator(),
 			base = jsDump.indent(),
@@ -26,7 +26,7 @@ var jsDump;
 		if( !arr )
 			return pre + post;
 		return [ pre, inner + arr, base + post ].join(s);
-	};
+	}
 	function array( arr ){
 		var i = arr.length, ret = Array(i);
 		this.up();
@@ -34,7 +34,7 @@ var jsDump;
 			ret[i] = this.parse( arr[i] );
 		this.down();
 		return join( '[', ret, ']' );
-	};
+	}
 	
 	var reName = /^function (\w+)/;
 	
