@@ -15,7 +15,7 @@ var jsDump;
 		return '"' + str.toString().replace(/"/g, '\\"') + '"';
 	};
 	function literal( o ){
-		return o + '';	
+		return o + '';
 	};
 	function join( pre, arr, post ){
 		var s = jsDump.separator(),
@@ -28,10 +28,10 @@ var jsDump;
 		return [ pre, inner + arr, base + post ].join(s);
 	};
 	function array( arr ){
-		var i = arr.length,	ret = Array(i);					
+		var i = arr.length, ret = Array(i);
 		this.up();
 		while( i-- )
-			ret[i] = this.parse( arr[i] );				
+			ret[i] = this.parse( arr[i] );
 		this.down();
 		return join( '[', ret, ']' );
 	};
@@ -40,12 +40,12 @@ var jsDump;
 	
 	jsDump = {
 		parse:function( obj, type ){//type is used mostly internally, you can fix a (custom)type in advance
-			var	parser = this.parsers[ type || this.typeOf(obj) ];
-			type = typeof parser;			
+			var parser = this.parsers[ type || this.typeOf(obj) ];
+			type = typeof parser;
 			
 			return type == 'function' ? parser.call( this, obj ) :
-				   type == 'string' ? parser :
-				   this.parsers.error;
+				type == 'string' ? parser :
+				this.parsers.error;
 		},
 		typeOf:function( obj ){
 			var type = typeof obj,
@@ -54,7 +54,7 @@ var jsDump;
 				!obj ? 'null' :
 				obj.exec ? 'regexp' :// some browsers (FF) consider regexps functions
 				obj.getHours ? 'date' :
-				obj.scrollBy ?  'window' :
+				obj.scrollBy ? 'window' :
 				obj.nodeName == '#document' ? 'document' :
 				obj.nodeName ? 'node' :
 				obj.item ? 'nodelist' : // Safari reports nodelists as functions
@@ -65,7 +65,7 @@ var jsDump;
 				type;
 		},
 		separator:function(){
-			return this.multiline ?	this.HTML ? '<br />' : '\n' : this.HTML ? '&nbsp;' : ' ';
+			return this.multiline ? this.HTML ? '<br />' : '\n' : this.HTML ? '&nbsp;' : ' ';
 		},
 		indent:function( extra ){// extra can be a number, shortcut for increasing-calling-decreasing
 			if( !this.multiline )
@@ -88,7 +88,6 @@ var jsDump;
 		quote:quote, 
 		literal:literal,
 		join:join,
-		//
 		_depth_: 1,
 		// This is the list of parsers, to modify them, use jsDump.setParser
 		parsers:{
@@ -104,7 +103,6 @@ var jsDump;
 				if( name )
 					ret += ' ' + name;
 				ret += '(';
-				
 				ret = [ ret, this.parse( fn, 'functionArgs' ), '){'].join('');
 				return join( ret, this.parse(fn,'functionCode'), '}' );
 			},
@@ -122,10 +120,8 @@ var jsDump;
 			node:function( node ){
 				var open = this.HTML ? '&lt;' : '<',
 					close = this.HTML ? '&gt;' : '>';
-					
 				var tag = node.nodeName.toLowerCase(),
 					ret = open + tag;
-					
 				for( var a in this.DOMAttrs ){
 					var val = node[this.DOMAttrs[a]];
 					if( val )
@@ -135,8 +131,7 @@ var jsDump;
 			},
 			functionArgs:function( fn ){//function calls it internally, it's the arguments part of the function
 				var l = fn.length;
-				if( !l ) return '';				
-				
+				if( !l ) return '';
 				var args = Array(l);
 				while( l-- )
 					args[l] = String.fromCharCode(97+l);//97 is 'a'
@@ -162,3 +157,7 @@ var jsDump;
 	};
 
 })();
+
+if (typeof exports !== 'undefined') {
+	exports.jsDump = jsDump;
+}
