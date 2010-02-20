@@ -7,7 +7,7 @@ jsDump is like [Mozilla’s toSource()](https://developer.mozilla.org/en/Core_Ja
 but cross-browser.
 
 [jsDump](http://flesler.blogspot.com/2008/05/jsdump-pretty-dump-of-any-javascript.html)
-was originally developped by Ariel Flesler.
+was originally developed by Ariel Flesler.
 This fork based on [version 1.0.0](http://code.google.com/p/flesler-projects/source/browse/trunk/javascript/JSDump/).
 
 
