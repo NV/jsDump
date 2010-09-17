@@ -19,7 +19,7 @@ Analogs
   - `console._source_of()` from [Console.js](http://github.com/NV/console.js/)
 
 
-Tests
+[Tests](http://nv.github.com/jsDump/tests/)
 -----
 Run tests from command line:
 
