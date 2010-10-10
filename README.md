@@ -21,11 +21,14 @@ Analogs
 
 [Tests](http://nv.github.com/jsDump/tests/)
 -----
-Run tests from command line:
+In the browser:
+
+  1. `git submodule update --init`
+  2. open `tests/index.html`
+
+Or from command line:
 
     $ narwhal tests/*_test.js
-
-To run tests in the browser open `tests/index.html`
 
 
 Contribution
