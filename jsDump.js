@@ -159,5 +159,5 @@ var jsDump;
 })();
 
 if (typeof exports !== 'undefined') {
-	exports.jsDump = jsDump;
+	module.exports = jsDump;
 }
