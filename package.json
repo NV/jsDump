@@ -1,10 +1,10 @@
 {
-        "name" : "jsDump",
-        "version" : "1.0.0",
-        "description" : "returns a string containing a human-readable representation of object",
-        "main": "./jsDump",
-        "repostitory" : {
-                "type" : "git",
-                "url" : "https://github.com/NV/jsDump"
-        }
+	"name" : "jsDump",
+	"version" : "1.0.0",
+	"description" : "returns a string containing a human-readable representation of object",
+	"main": "./jsDump",
+	"repostitory" : {
+		"type" : "git",
+		"url" : "https://github.com/NV/jsDump"
+	}
 }

@@ -18,6 +18,14 @@ Analogs
   - `repr()` from Narwhal’s util module
   - `console._source_of()` from [Console.js](http://github.com/NV/console.js/)
 
+NPM
+---
+
+can be installed with:
+    npm install jsDump
+and used in node with:
+    var jsDump = require("jsDump");
+    jsDump.parse(foo);
 
 [Tests](http://nv.github.com/jsDump/tests/)
 -----
