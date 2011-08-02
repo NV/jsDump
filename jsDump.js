@@ -50,19 +50,23 @@ var jsDump;
 		typeOf:function( obj ){
 			var type = typeof obj,
 				f = 'function';//we'll use it 3 times, save it
-			return type != 'object' && type != f ? type :
-				!obj ? 'null' :
-				obj.exec ? 'regexp' :// some browsers (FF) consider regexps functions
-				obj.getHours ? 'date' :
-				obj.scrollBy ? 'window' :
-				obj.nodeName == '#document' ? 'document' :
-				obj.nodeName ? 'node' :
-				obj.item ? 'nodelist' : // Safari reports nodelists as functions
-				obj.callee ? 'arguments' :
-				obj.call || obj.constructor != Array && //an array would also fall on this hack
-					(obj+'').indexOf(f) != -1 ? f : //IE reports functions like alert, as objects
-				'length' in obj ? 'array' :
-				type;
+			try {
+				return type != 'object' && type != f ? type :
+					!obj ? 'null' :
+					obj.exec ? 'regexp' :// some browsers (FF) consider regexps functions
+					obj.getHours ? 'date' :
+					obj.scrollBy ? 'window' :
+					obj.nodeName == '#document' ? 'document' :
+					obj.nodeName ? 'node' :
+					obj.item ? 'nodelist' : // Safari reports nodelists as functions
+					obj.callee ? 'arguments' :
+					obj.call || obj.constructor != Array && //an array would also fall on this hack
+						(obj+'').indexOf(f) != -1 ? f : //IE reports functions like alert, as objects
+					'length' in obj ? 'array' :
+					type;
+			} catch ( er ) {
+				return 'null'; // permission denied exception may be raised for foreign frames
+			}
 		},
 		separator:function(){
 			return this.multiline ? this.HTML ? '<br />' : '\n' : this.HTML ? '&nbsp;' : ' ';
