@@ -61,7 +61,7 @@ var jsDump;
 				obj.callee ? 'arguments' :
 				obj.call || obj.constructor != Array && //an array would also fall on this hack
 					(obj+'').indexOf(f) != -1 ? f : //IE reports functions like alert, as objects
-				'length' in obj ? 'array' :
+				('isArray' in Array ? Array.isArray(obj) : Object.prototype.toString.call(obj) == '[object Array]') ? 'array' :
 				type;
 		},
 		separator:function(){

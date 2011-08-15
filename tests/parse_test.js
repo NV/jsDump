@@ -47,7 +47,7 @@ TESTS.strings = [
 	},
 	{
 		input: new String('Z'),
-		result: '[\n   "Z"\n]'
+		result: '{\n   "0": "Z"\n}'
 	}
 ];
 
@@ -245,6 +245,10 @@ TESTS.objects = [
 	{
 		input:  {"list": [1, 2, 3]},
 		result:'{\n   "list": [\n      1,\n      2,\n      3\n   ]\n}'
+	},
+	{
+		input:  {"length": 0, "width": 0},
+		result:'{\n   "length": 0,\n   "width": 0\n}'
 	},
 	{
 		input: {
