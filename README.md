@@ -21,11 +21,14 @@ Analogs
 NPM
 ---
 
-can be installed with:
+Can be installed with:
+
     npm install jsDump
-and used in node with:
+
+and used in Node.js with:
+
     var jsDump = require("jsDump");
-    jsDump.parse(foo);
+    jsDump.parse({foo: 'bar', length: 0});
 
 [Tests](http://nv.github.com/jsDump/tests/)
 -----
