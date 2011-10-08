@@ -55,7 +55,7 @@ var jsDump;
 				if ( obj === null )
 					return 'null';
 
-				// Extract Staff from [Object Staff]
+				// Extract Stuff from [Object Stuff]
 				kind = Object.prototype.toString.call(obj).slice(8, -1);
 				switch ( kind ) {
 					case 'Array':

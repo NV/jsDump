@@ -1,31 +1,30 @@
 jsDump
 ======
 
-`jsDump.parse(object)` returns a string containing a human-readable representation of `object`
+`jsDump.parse(object)` returns a string containing a human-readable representation of `object`.
 
 jsDump is like [Mozilla’s toSource()](https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Function/toSource),
-but cross-browser.
+but it works in all modern browsers.
 
 [jsDump](http://flesler.blogspot.com/2008/05/jsdump-pretty-dump-of-any-javascript.html)
 was originally developed by Ariel Flesler.
 This fork based on [version 1.0.0](http://code.google.com/p/flesler-projects/source/browse/trunk/javascript/JSDump/).
 
 
-Analogs
+Similar Stuff
 -------
 
+  - `JSON.stringify()`. Doesn’t serialize functions and DOM nodes.
   - `inspect()` from [Node.js sys module](http://nodejs.org/api.html#_system_module)
   - `repr()` from Narwhal’s util module
   - `console._source_of()` from [Console.js](http://github.com/NV/console.js/)
 
-NPM
+[NPM](http://search.npmjs.org/#/jsDump)
 ---
-
-Can be installed with:
 
     npm install jsDump
 
-and used in Node.js with:
+Usage:
 
     var jsDump = require("jsDump");
     jsDump.parse({foo: 'bar', length: 0});
