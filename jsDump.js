@@ -83,6 +83,8 @@ var jsDump;
 						if ( 'callee' in obj )
 							// Opera: Object.prototype.toString.call(arguments) == 'Object' :(
 							return 'arguments';
+						else if (window.jQuery && obj instanceof window.jQuery)
+							return 'jquery';
 						else if ( 'ownerDocument' in obj && 'defaultView' in obj.ownerDocument && obj instanceof obj.ownerDocument.defaultView.Node )
 							return 'node';
 				}
@@ -134,6 +136,7 @@ var jsDump;
 			array: array,
 			nodelist: array,
 			arguments: array,
+			jquery:array,
 			object:function( map ){
 				var ret = [ ];
 				this.up();
