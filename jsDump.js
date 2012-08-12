@@ -138,6 +138,10 @@ var jsDump;
 			arguments: array,
 			jquery:array,
 			object:function( map ){
+				if (this._depth_ >= this.maxDepth) {
+					this._depth_ = 1; // Reset for future use
+					throw new Error("Object nesting exceeded jsDump.maxDepth (" + jsDump.maxDepth + ")");
+				}
 				var ret = [ ];
 				this.up();
 				for( var key in map )
@@ -181,7 +185,8 @@ var jsDump;
 		},
 		HTML:false,//if true, entities are escaped ( <, >, \t, space and \n )
 		indentChar:'   ',//indentation unit
-		multiline:true //if true, items in a collection, are separated by a \n, else just a space.
+		multiline:true, //if true, items in a collection, are separated by a \n, else just a space.
+		maxDepth:100 //maximum depth of object nesting
 	};
 
 })();
