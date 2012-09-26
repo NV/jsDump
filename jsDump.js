@@ -83,7 +83,7 @@ var jsDump;
 						if ( 'callee' in obj )
 							// Opera: Object.prototype.toString.call(arguments) == 'Object' :(
 							return 'arguments';
-						else if (window.jQuery && obj instanceof window.jQuery)
+						else if (typeof window !== 'undefined' && window.jQuery && obj instanceof window.jQuery)
 							return 'jquery';
 						else if ( 'ownerDocument' in obj && 'defaultView' in obj.ownerDocument && obj instanceof obj.ownerDocument.defaultView.Node )
 							return 'node';
@@ -142,10 +142,18 @@ var jsDump;
 					this._depth_ = 1; // Reset for future use
 					throw new Error("Object nesting exceeded jsDump.maxDepth (" + jsDump.maxDepth + ")");
 				}
-				var ret = [ ];
-				this.up();
+				var keys = [ ];
 				for( var key in map )
-					ret.push( this.parse(key,'key') + ': ' + this.parse(map[key]) );
+					keys.push(key);
+				if( this.sortKeys )
+					keys.sort();
+				var i = keys.length,
+					ret = Array(i);
+				this.up();
+				while( i-- ) {
+					var key = keys[i];
+					ret[i] = this.parse(key,'key') + ': ' + this.parse(map[key]);
+				}
 				this.down();
 				return join( '{', ret, '}' );
 			},
@@ -186,7 +194,8 @@ var jsDump;
 		HTML:false,//if true, entities are escaped ( <, >, \t, space and \n )
 		indentChar:'   ',//indentation unit
 		multiline:true, //if true, items in a collection, are separated by a \n, else just a space.
-		maxDepth:100 //maximum depth of object nesting
+		maxDepth:100, //maximum depth of object nesting
+		sortKeys: false, //if true, object keys will be sorted
 	};
 
 })();
