@@ -313,6 +313,13 @@ for (var key in TESTS) (function(key) {
 	})
 })(key);
 
+test('sorted objects', function () {
+	jsDump.sortKeys = true
+	var a = jsDump.parse({b: 2, a: 1});
+	var b = '{\n   "a": 1,\n   "b": 2\n}'
+	strictEqual(a, b);
+})
+
 
 if (module === require.main) {
 	require("test").run(tests);
