@@ -142,6 +142,60 @@ TESTS.arrays = [
 ];
 
 
+TESTS.arguments = [
+	{
+		input:  (function() { return arguments; })(),
+		result:"[]"
+	},
+	{
+		input:  (function() { return arguments; })(
+			[]
+		),
+		result:
+						"[\n   []\n]"
+	},
+	{
+		input:  (function() { return arguments; })(
+			[
+				[]
+			]
+		),
+		result:"[\n   [\n      []\n   ]\n]"
+	},
+	{
+		input:  (function() { return arguments; })(
+			[],
+			[],
+			[]
+		),
+		result:"[\n   [],\n   [],\n   []\n]"
+	},
+	{
+		input:  (function() { return arguments; })("Down", ["to", ["the", ["Rabbit", ["Hole"]]]]),
+		result:
+'[\n\
+   "Down",\n\
+   [\n\
+      "to",\n\
+      [\n\
+         "the",\n\
+         [\n\
+            "Rabbit",\n\
+            [\n\
+               "Hole"\n\
+            ]\n\
+         ]\n\
+      ]\n\
+   ]\n\
+]'
+	},
+	{
+		input:  new Array(3, 0, -1),
+		result: '[\n   3,\n   0,\n   -1\n]'
+	}
+];
+
+
 TESTS.functions = [
 	{
 		input:  function empty() {
